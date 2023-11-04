@@ -1,0 +1,30 @@
+--FL4SHD3V | Blox#6611
+local LP = game.Players.LocalPlayer
+
+local function activateTpRoll()
+    for i,v in pairs (LP.Character:GetChildren()) do
+        if v.Name == "TpRoll" then
+            v:Activate()
+        end
+    end
+end
+
+local function moveTpRoll()
+    game.ReplicatedStorage.ToolEvents.TpRollEvent:FireServer()
+    repeat wait() until LP.Character
+    for i,v in pairs(LP.Backpack:GetChildren()) do
+        if v.Name == "TpRoll" then
+            v.Parent = LP.Character
+        end
+    endT
+end
+
+game:GetService("Players").LocalPlayer.Chatted:Connect(function(msg)
+    if msg == "!rain" then
+        moveTpRoll()
+        while true do
+            wait()
+            activateTpRoll()
+        end
+    end
+end)
